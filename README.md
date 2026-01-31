@@ -82,7 +82,7 @@ The pipeline handles three different data formats:
 ### Step 1: Clone the Repo
 
 ```bash
-git clone https://github.com/Prayaksh/Innomatics-Research-Labs-Hackathon.git
+git clone [https://github.com/Prayaksh/Innomatics-Research-Labs-Hackathon.git](https://github.com/Prayaksh/Innomatics-Research-Labs-Hackathon.git)
 cd Innomatics-Research-Labs-Hackathon
 
 ```
