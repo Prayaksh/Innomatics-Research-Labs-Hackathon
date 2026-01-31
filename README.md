@@ -1,68 +1,123 @@
-Innomatics Research Labs | Advanced GenAI Internship | Entrance Test
-Project Overview
-This repository contains the solution for the Innomatics Research Labs Advanced GenAI Internship Entrance Test. The objective was to construct a robust data pipeline that ingests, processes, and merges data from three distinct formats—JSON, SQL, and CSV—to create a unified dataset for analysis.
+````markdown
+# 🚀 Innomatics Research Labs | Entrance Test
 
-The final output is a consolidated dataset final_food_delivery_dataset.csv, which was used to derive insights and answer specific analytical questions provided in the assessment.
+### 🎓 Advanced GenAI Internship
 
-Repository Structure
-ExecuteSQL.py: A utility script that handles database operations. It loads environment variables, connects to the PostgreSQL instance, executes the SQL dump, and extracts data into a DataFrame.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791?logo=postgresql&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Engineering-150458?logo=pandas&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
-Restaurent.ipynb: The core logic file that:
+> **Project Goal:** To engineer a robust **ETL pipeline** that ingests heterogeneous data (JSON, SQL, CSV), processes it via Python, and generates a unified dataset for analytics.
 
-Ingests raw JSON and CSV files.
+---
 
-Integrates the SQL data via ExecuteSQL.py.
+## 📋 Table of Contents
 
-Merges all three sources into a single DataFrame.
+- [Project Overview](#-project-overview)
+- [Pipeline Workflow](#-pipeline-workflow)
+- [Folder Structure](#-folder-structure)
+- [Tech Stack](#-tech-stack)
+- [How to Run](#-how-to-run)
 
-Performs data analysis to calculate the required metrics.
+---
 
-final_food_delivery_dataset.csv: The cleaned and merged final dataset.
+## 🔄 Pipeline Workflow
 
-.env.example: A template file containing the required environment variable keys for database connection.
+```mermaid
+graph LR
+    A[Raw CSV] --> D(Python Processing)
+    B[Raw JSON] --> D
+    C[PostgreSQL DB] -->|ExecuteSQL.py| D
+    D --> E[Merged DataFrame]
+    E --> F[final_food_delivery_dataset.csv]
+    F --> G[Analysis & Insights]
+```
+````
 
-Tech Stack
-Language: Python
+---
 
-Data Manipulation: Pandas, NumPy
+## 📂 Folder Structure
 
-Database: PostgreSQL
+| File Name                         | Description                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------- |
+| `ExecuteSQL.py`                   | 🔌 **Database Handler:** Connects to Postgres, runs SQL dumps, and fetches data. |
+| `analysis_notebook.ipynb`         | 🧠 **Core Logic:** Handles ingestion, merging, and final analysis.               |
+| `final_food_delivery_dataset.csv` | 📊 **Output:** The cleaned and merged final dataset.                             |
+| `.env.example`                    | 🔐 **Security:** Template for storing database credentials safely.               |
 
-Utilities: python-dotenv (for secure credential management), psycopg2
+---
 
-Methodology
+## 🛠 Tech Stack
 
-1. Data Ingestion & Transformation
-   The project required handling heterogeneous data sources:
+- **Language:** Python
+- **Data Manipulation:** Pandas, NumPy
+- **Database:** PostgreSQL
+- **Database Adapter:** `psycopg2`
+- **Security:** `python-dotenv` (Environment variable management)
 
-SQL Integration: Instead of manually exporting CSVs, I wrote a Python script (ExecuteSQL.py) to automate the connection to PostgreSQL. It uses dotenv to safely load credentials, runs the raw SQL file to set up the environment, and queries the table directly into a DataFrame.
+---
 
-File Parsing: Parsed semi-structured JSON data and structured CSV data into compatible DataFrames.
+## ⚡ Key Features
 
-2. Data Merging
-   Identified common keys across the three datasets.
+### 1. 🔐 Secure Database Integration
 
-Performed merges to create a comprehensive view of the food delivery data, ensuring no critical data points were lost during the join process.
+Instead of manual exports, the project uses a custom script to securely connect to a local PostgreSQL instance.
 
-3. Analysis
-   The final_food_delivery_dataset.csv was used to query specific metrics (e.g., delivery times, order values, customer demographics) as required by the entrance test questions.
+- **Security:** Uses `.env` to keep passwords safe (never hardcoded).
+- **Automation:** Executes raw SQL dumps to initialize tables on the fly.
 
-How to Run Locally
-Clone the Repository
+### 2. 🧩 Complex Data Merging
 
-Bash
+The pipeline handles three different data formats:
+
+- **JSON:** Parsed semi-structured data.
+- **SQL:** Extracted relational data via direct DB connection.
+- **CSV:** Standard flat-file ingestion.
+
+---
+
+## 🚀 How to Run
+
+### Step 1: Clone the Repo
+
+```bash
 git clone https://github.com/Prayaksh/Innomatics-Research-Labs-Hackathon.git
 cd Innomatics-Research-Labs-Hackathon
-Install Dependencies
 
-Bash
-pip install pandas psycopg2-binary python-dotenv
-Environment Setup
+```
 
-Create a .env file by copying the provided example:
+### Step 2: Install Requirements
 
-Bash
-cp .env.example .env
-Open .env and fill in your local PostgreSQL credentials (HOST, PORT, USER, PASSWORD, DB_NAME).
+```bash
+pip install pandas psycopg2-binary python-dotenv notebook
 
-Execute the Pipeline Run the main script to generate the dataset and view the analysis results.
+```
+
+### Step 3: Setup Credentials
+
+Create a `.env` file (you can copy `.env.example`) and add your database details:
+
+```ini
+DB_HOST=localhost
+DB_NAME=your_db_name
+DB_USER=your_username
+DB_PASS=your_password
+DB_PORT=5432
+
+```
+
+### Step 4: Run Analysis
+
+```bash
+jupyter notebook analysis_notebook.ipynb
+
+```
+
+---
+
+_Authored by Prayaksh_
+
+```
+
+```
